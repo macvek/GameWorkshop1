@@ -3,7 +3,6 @@ package gamer;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
-import java.net.SocketException;
 import java.util.Arrays;
 import java.util.List;
 
@@ -14,11 +13,35 @@ public class UdpClient {
 		UdpClient client = new UdpClient();
 		
 		client.map();
+		client.move("a", "P");
+		client.create();
+		client.list();
+		client.apple();
 	}
 	
 	public void map() throws Exception {
 		sendTxtAndShowOnOutput(Arrays.asList(Messages.MAP));
 	}
+	
+	public void move(String what, String where) throws Exception {
+		sendTxtAndShowOnOutput(Arrays.asList(Messages.MOVE, where));
+	}
+	
+	public void create() throws Exception {
+		sendTxtAndShowOnOutput(Arrays.asList(Messages.CREATE));
+	}
+	
+	public void list() throws Exception {
+		sendTxtAndShowOnOutput(Arrays.asList(Messages.LIST));
+	}
+	
+	public void apple() throws Exception {
+		sendTxtAndShowOnOutput(Arrays.asList(Messages.APPLE));
+	}
+	
+	
+	
+	
 	
 	private void sendTxtAndShowOnOutput(List<String> args) throws Exception {
 
