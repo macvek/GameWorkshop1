@@ -1,5 +1,6 @@
 package gamer;
 
+import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 
@@ -15,34 +16,39 @@ public class UdpServer {
 		    	socket.receive(packet);
 		    	
 	    		String asString = new String(packet.getData(), 0, packet.getLength());
+	    		System.out.println("SERVER RECEIVED:"+asString);
 	    		if (Messages.STOP.equals(asString)) {
 	    			break mainloop;
 	    		}
 	    		if (Messages.PING.equals(asString)) {
-	    			DatagramPacket response = new DatagramPacket(Messages.PONG.getBytes(), Messages.PONG.length());
-	    			response.setSocketAddress(packet.getSocketAddress());
-	    			socket.send(response);
+	    			sendResponse(Messages.PONG,socket, packet);
 	    		}
 	    		if (Messages.MAP.equals(asString)) {
-	    			String responseS = "";
-	    			for (int i = 0; i < 7; i++) {
-	    				//if (i==0||i==6){
-	    					responseS += "x"+"\n";
-	    				//}
-//	    				for (int j = 0; j < 7; j++) {
-//	    					if (j==0||j==6){
-//		    					responseS += "x";
-//		    				}
-//						}
-					}
-	    			DatagramPacket response = new DatagramPacket(responseS.getBytes(), responseS.length());
-	    			response.setSocketAddress(packet.getSocketAddress());
-	    			socket.send(response);
+	    			sendResponse(Messages.PONG,socket, packet);
+	    		}
+	    		else if (Messages.CREATE.equals(asString)) {
+	    			sendResponse(Messages.PONG,socket, packet);
+	    		}
+	    		else if (Messages.APPLE.equals(asString)) {
+	    			sendResponse(Messages.PONG,socket, packet);
+	    		}
+	    		else if (Messages.LIST.equals(asString)) {
+	    			sendResponse(Messages.PONG,socket, packet);
+	    		}
+	    		else if (asString.startsWith(Messages.MOVE)) {
+	    			String[] moveArgs = asString.split(";");
+	    			if (moveArgs.length != 3) {
+	    				failedToComply(socket, packet);
+	    			}
+	    			else {
+		    			String what = moveArgs[1];
+		    			String where = moveArgs[2];
+		    			sendResponse(Messages.PONG,socket, packet);
+	    			}
+	    			
 	    		}
 	    		else {
-	    			DatagramPacket response = new DatagramPacket(Messages.DONTKNOW.getBytes(), Messages.DONTKNOW.length());
-	    			response.setSocketAddress(packet.getSocketAddress());
-	    			socket.send(response);
+	    			failedToComply(socket, packet);
 	    		}
 		    	
 			}
@@ -51,5 +57,17 @@ public class UdpServer {
 			socket.close();
 		}
 	    
+	}
+
+	private static void sendResponse(String msg,DatagramSocket socket, DatagramPacket packet) throws IOException {
+		DatagramPacket response = new DatagramPacket(msg.getBytes(), msg.length());
+		response.setSocketAddress(packet.getSocketAddress());
+		socket.send(response);
+	}
+
+	private static void failedToComply(DatagramSocket socket, DatagramPacket packet) throws IOException {
+		DatagramPacket response = new DatagramPacket(Messages.DONTKNOW.getBytes(), Messages.DONTKNOW.length());
+		response.setSocketAddress(packet.getSocketAddress());
+		socket.send(response);
 	}
 }
