@@ -16,17 +16,11 @@ import javax.swing.JPanel;
 import javax.swing.WindowConstants;
 
 public class UdpClient {
-	public static final String REMOTE = "10.254.22.19";
+//	public static final String REMOTE = "10.254.22.19";
+	public static final String REMOTE = "localhost";
 	
 	public static void main(String[] args) throws Exception {
 		final UdpClient client = new UdpClient();
-		
-//		client.map();
-//		client.move("a", "P");
-//		client.create();
-//		client.list();
-//		client.apple();
-//		
 		
 		JFrame frame = new JFrame();
 		frame.setSize(400, 400);	
