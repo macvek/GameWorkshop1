@@ -6,10 +6,15 @@ import java.net.DatagramSocket;
 
 public class UdpServer {
 	public static void main(String[] args) throws Exception {
+		
 		DatagramSocket socket = new DatagramSocket(4445);
 		try {
 			byte[] buf = new byte[1024];
 			Gred gred = new Gred(5);
+			WorldAction action = new WorldAction();
+			action.setGred(gred);
+			Thread thread = new Thread(action);
+			thread.start();
 
 			mainloop: for (;;) {
 				DatagramPacket packet = new DatagramPacket(buf, buf.length);
@@ -25,7 +30,8 @@ public class UdpServer {
 					sendResponse(Messages.PONG, socket, packet);
 				}
 				if (Messages.MAP.equals(asString)) {
-					DatagramPacket response = new DatagramPacket(gred.getMap().getBytes(), gred.getMap().length());
+					String map = gred.getMap();
+					DatagramPacket response = new DatagramPacket(map.getBytes(), map.length());
 					response.setSocketAddress(packet.getSocketAddress());
 					socket.send(response);
 				} else if (Messages.CREATE.equals(asString)) {

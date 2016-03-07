@@ -1,18 +1,31 @@
 package gamer;
 
-import java.time.format.TextStyle;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Predicate;
+
 
 public class Gred {
 	
 	private String gredStr = "";
 	String[][] array = new String[7][7];
 	private List<Client> clients;		
+	private List<Apple> apples = new ArrayList<>();
+	
+	
 
 	public Gred(int i5) {
-		clients= new ArrayList<>();
+		
+		
+	}
+
+	private void updateApples() {
+		for (Apple apple : apples) {
+			array[apple.getY()][apple.getX()] = "J";
+		}
+		
+	}
+
+	private void cleanMap() {
 		for (int i = 0; i < 7; i++) {
 			for (int j = 0; j < 7; j++) {
 				array[i][j] = " ";
@@ -29,6 +42,9 @@ public class Gred {
 	}
 
 	public String getMap() {
+		cleanMap();
+		updateApples();
+		
 		for (int i = 0; i < 7; i++) {
 			for (int j = 0; j < 7; j++) {
 				gredStr += array[j][i];
@@ -65,4 +81,12 @@ public class Gred {
 	public String move(String what, String where) {
 		return Messages.NOTIMPLEMENTED;
 	}
+
+	public List<Apple> getApples() {
+		return apples;
+	}
+	
+
+	
+	
 }
