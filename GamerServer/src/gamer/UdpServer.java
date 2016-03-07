@@ -9,7 +9,7 @@ public class UdpServer {
 		DatagramSocket socket = new DatagramSocket(4445);
 		try {
 			byte[] buf = new byte[1024];
-			// Gred gred = new Gred(5);
+			Gred gred = new Gred(5);
 
 			mainloop: for (;;) {
 				DatagramPacket packet = new DatagramPacket(buf, buf.length);
@@ -25,7 +25,7 @@ public class UdpServer {
 					sendResponse(Messages.PONG, socket, packet);
 				}
 				if (Messages.MAP.equals(asString)) {
-					sendResponse(Messages.PONG, socket, packet);
+					sendResponse(gred.getMap(), socket, packet);
 				} else if (Messages.CREATE.equals(asString)) {
 					sendResponse(Messages.PONG, socket, packet);
 				} else if (Messages.APPLE.equals(asString)) {
