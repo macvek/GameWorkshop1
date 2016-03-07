@@ -9,8 +9,9 @@ public class UpdClient {
 		DatagramSocket socket = new DatagramSocket();
 
 		// send request
-		byte[] buf = Messages.PING.getBytes();
-		InetAddress address = InetAddress.getByName("10.254.22.19");
+		byte[] buf = Messages.MAP.getBytes();
+//		InetAddress address = InetAddress.getByName("10.254.22.19");
+		InetAddress address = InetAddress.getByName("localhost");
 		DatagramPacket packet = new DatagramPacket(buf, buf.length, address, 4445);
 		socket.send(packet);
 		
