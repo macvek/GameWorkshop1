@@ -158,7 +158,7 @@ public class UdpClient {
 		socket.receive(received);
 		socket.close();
 		
-		System.out.println("RECEIVED: "+new String(recvBuf,0,received.getLength()));
+		System.out.println("RECEIVED: \n"+new String(recvBuf,0,received.getLength()));
 
 	}
 
