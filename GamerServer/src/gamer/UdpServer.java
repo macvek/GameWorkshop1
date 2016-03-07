@@ -27,6 +27,16 @@ public class UdpServer {
 					DatagramPacket response = new DatagramPacket(gred.getMap().getBytes(), gred.getMap().length());
 					response.setSocketAddress(packet.getSocketAddress());
 					socket.send(response);
+				} if(Messages.MOVE.equals(asString)) {
+					String where = new String(packet.getData(), 0, packet.getLength());
+					DatagramPacket response = new DatagramPacket(("OK"+gred.moveClient(where)).getBytes(), ("OK"+gred.getClientCord()).length());
+					response.setSocketAddress(packet.getSocketAddress());
+					socket.send(response);
+				} if(Messages.CREATE.equals(asString)) {
+					
+					DatagramPacket response = new DatagramPacket(("OK"+gred.getClientCord()).getBytes(), ("OK"+gred.getClientCord()).length());
+					response.setSocketAddress(packet.getSocketAddress());
+					socket.send(response);
 				} else {
 					DatagramPacket response = new DatagramPacket(Messages.DONTKNOW.getBytes(),
 							Messages.DONTKNOW.length());

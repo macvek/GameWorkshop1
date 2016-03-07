@@ -13,8 +13,8 @@ public class UdpClient {
 	public static void main(String[] args) throws Exception {
 		UdpClient client = new UdpClient();
 		
-		client.map();
-//		client.move("a", "P");
+//		client.map();
+		client.move("a", "P");
 //		client.create();
 //		client.list();
 //		client.apple();
