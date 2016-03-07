@@ -29,11 +29,11 @@ public class UdpServer {
 					response.setSocketAddress(packet.getSocketAddress());
 					socket.send(response);
 				} else if (Messages.CREATE.equals(asString)) {
-					sendResponse(Messages.PONG, socket, packet);
+					sendResponse(gred.create(), socket, packet);
 				} else if (Messages.APPLE.equals(asString)) {
-					sendResponse(Messages.PONG, socket, packet);
+					sendResponse(gred.apple(), socket, packet);
 				} else if (Messages.LIST.equals(asString)) {
-					sendResponse(Messages.PONG, socket, packet);
+					sendResponse(gred.list(), socket, packet);
 				} else if (asString.startsWith(Messages.MOVE)) {
 					String[] moveArgs = asString.split(";");
 					if (moveArgs.length != 3) {
@@ -41,7 +41,7 @@ public class UdpServer {
 					} else {
 						String what = moveArgs[1];
 						String where = moveArgs[2];
-						sendResponse(Messages.PONG, socket, packet);
+						sendResponse(gred.move(what, where), socket, packet);
 					}
 				} else {
 					failedToComply(socket, packet);

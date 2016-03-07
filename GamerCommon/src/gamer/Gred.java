@@ -1,7 +1,5 @@
 package gamer;
 
-import java.util.ArrayList;
-
 public class Gred {
 	
 	private String gredStr = "";
@@ -22,8 +20,8 @@ public class Gred {
 			array[i][6] = "x";
 		}
 		for (int i = 0; i < 7; i++) {
-			array[1][i] = "x";
-			array[5][i] = "x";
+			array[0][i] = "x";
+			array[6][i] = "x";
 		}
 	}
 
@@ -44,5 +42,22 @@ public class Gred {
 	public String moveClient(String where) {
 		String cord = client.getCord();
 		return " ";
+	}
+	
+	
+	public String create() {
+		return Messages.NOTIMPLEMENTED;
+	}
+	
+	public String apple() {
+		return Messages.NOTIMPLEMENTED;
+	}
+	
+	public String list() {
+		return Messages.NOTIMPLEMENTED;
+	}
+	
+	public String move(String what, String where) {
+		return Messages.NOTIMPLEMENTED;
 	}
 }
