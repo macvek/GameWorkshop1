@@ -1,15 +1,18 @@
 package gamer;
 
+import java.time.format.TextStyle;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.function.Predicate;
+
 public class Gred {
 	
 	private String gredStr = "";
 	String[][] array = new String[7][7];
-	private Client client;
-	
-	
+	private List<Client> clients;		
 
 	public Gred(int i5) {
-		client = new Client(1,1);
+		clients= new ArrayList<>();
 		for (int i = 0; i < 7; i++) {
 			for (int j = 0; j < 7; j++) {
 				array[i][j] = " ";
@@ -40,13 +43,15 @@ public class Gred {
 	}
 
 	public String moveClient(String where) {
-		String cord = client.getCord();
+//		String cord = client.getCord();
 		return " ";
 	}
 	
 	
 	public String create() {
-		return Messages.NOTIMPLEMENTED;
+		Client client = new Client();
+		clients.add(client);
+		return Messages.OK;
 	}
 	
 	public String apple() {

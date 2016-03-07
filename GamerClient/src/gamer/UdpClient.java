@@ -113,11 +113,11 @@ public class UdpClient {
 			}
 		});
 		
-		client.map();
-		client.move("a", "P");
-		client.create();
-		client.list();
-		client.apple();
+//		client.map();
+//		client.move("a", "P");
+//		client.create();
+//		client.list();
+//		client.apple();
 		frame.add(listPane);
 	}
 	

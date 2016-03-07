@@ -11,4 +11,5 @@ public class Messages {
 	public static final String CREATE="CREATE";
 	public static final String LIST="LIST";
 	public static final String APPLE="APPLE";
+	public static final String OK = "OK";
 }
