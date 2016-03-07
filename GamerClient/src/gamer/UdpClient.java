@@ -7,16 +7,17 @@ import java.util.Arrays;
 import java.util.List;
 
 public class UdpClient {
-	public static final String REMOTE = "10.254.22.19";
+//	public static final String REMOTE = "10.254.22.19";
+	public static final String REMOTE = "localhost";
 	
 	public static void main(String[] args) throws Exception {
 		UdpClient client = new UdpClient();
 		
 		client.map();
-		client.move("a", "P");
-		client.create();
-		client.list();
-		client.apple();
+//		client.move("a", "P");
+//		client.create();
+//		client.list();
+//		client.apple();
 	}
 	
 	public void map() throws Exception {
