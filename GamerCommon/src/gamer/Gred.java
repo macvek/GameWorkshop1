@@ -8,7 +8,7 @@ public class Gred {
 	
 	private String gredStr = "";
 	String[][] array = new String[7][7];
-	private List<Client> clients;		
+	private List<Client> clients = new ArrayList<>();		
 	private List<Apple> apples = new ArrayList<>();
 	
 	
@@ -44,6 +44,7 @@ public class Gred {
 	public String getMap() {
 		cleanMap();
 		updateApples();
+		updateClient();
 		
 		for (int i = 0; i < 7; i++) {
 			for (int j = 0; j < 7; j++) {
@@ -52,6 +53,12 @@ public class Gred {
 			gredStr += "\n";
 		}
 		return gredStr;
+	}
+
+	private void updateClient() {
+		for (Client client : clients) {
+			array[client.i][client.j] = String.valueOf(client.getName());
+		}
 	}
 
 	public String getClientCord() {

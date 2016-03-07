@@ -12,8 +12,8 @@ public class Client {
 	}
 
 	public Client() {
-		i=new Random().nextInt(7);
-		j=new Random().nextInt(7);		
+		i=1+new Random().nextInt(5);
+		j=1+new Random().nextInt(5);		
 		setName(new Random().nextInt(10));
 	}
 
